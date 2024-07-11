@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up log in form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <form class="myform" action="">
+        <div class="mainform">
+            <div class="header">
+                <h1>please log in to continue</h1>
+            </div>
+            <div class="allinputcontainer">
+                <div class="btncontainer">
+                    <button class="btn" type="button">sign in</button>
+                    <button class="btn" type="button">signup</button>
+                </div>
+                <div class="inputconatiner">
+                    <input class="emailinput" type="text" name="email">
+                    <input class="passwordinput" type="password" name="password">
+                    <p class="paragaph" style="color: red;"></p>
+                    <label for="remember">remember me</label>
+                    <input type="checkbox" name="remember" id="remember">
+                    <input class="signin-btn" type="submit" value="sign in">
+                </div>
+            </div>
+        </div>
+    </form>
+    
+
+</body>
+<script>
+    //** this code for acees all text container input 
+    // let textconatiner =  document.querySelectorAll(".textconatiner");
+    // console.log(textconatiner)
+    // textconatiner.forEach((container)=>{
+    //     let allinput = container.querySelectorAll("input")
+    //     allinput.forEach((input,i)=>{
+    //         console.log(input)
+    //     })
+
+    // })
+
+
+    // if user  corect patern of value than call valid class for true image show  and if incorect patern of value than  call invalid class for canle image show  
+    let container = document.querySelector(".inputconatiner");
+    let input = document.querySelector(".emailinput");
+    // console.log(container)
+    // console.log(input)
+    input.addEventListener("keyup", (e) => {
+        let patern = /^[^]+@[^]+\.[a-z]{2,3}$/;
+        if (input.value.match(patern)) {
+            container.classList.add("valid");
+            container.classList.remove("invalid")
+        }
+        else {
+            container.classList.add("invalid");
+            container.classList.remove("valid")
+        }
+    })
+
+    // if click cancle icone than  remove aded class 
+    // document.body.addEventListener("click", (e) => {
+    //     container.classList.remove("valid");
+    //     container.classList.remove("invalid")
+    // })
+
+
+
+
+    // if usern  click  sign bittuon than passwoerd is trong or weak   (this cheking function ) 
+
+    let passwordinput = document.querySelector(".passwordinput");
+    let signinButton = document.querySelector(".signin-btn");
+    let para = document.querySelector(".paragaph")
+
+    signinButton.addEventListener("click", (e) => {
+        e.preventDefault()
+        let passwoerdpatern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+        if (passwordinput.value.match(passwoerdpatern)) {
+            para.innerText = "Strong password";
+        }
+        else {
+            para.innerText = "weak  password :  please enter a strong password";
+        }
+
+    })
+
+    // from functionality 
+ 
+    
+
+signinButton.addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent any default action
+
+    let myform = document.querySelector(".myform");
+    let myformdata = new FormData(myform).entries();
+
+    for (let entry of myformdata) {
+        console.log(entry[0], entry[1]);
+    }
+});
+
+  
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
